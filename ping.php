@@ -4,7 +4,9 @@ set_time_limit(0);
 
 require_once ("comet.php");
 
+$comet = new comet();
+
 while(true){
-	push(time());
+	$comet->push(time());
 	sleep(1);
 }

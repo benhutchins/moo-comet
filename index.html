@@ -6,7 +6,7 @@
 	<script src="mootools.v1.2dev.js" type="text/javascript" charset="utf-8"></script>
 	<script src="request.comet.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
-		window.addEvent('domready', function() {
+		window.addEvent('load', function() {
 			var defTitle = document.title;
 			new Request.Comet({
 				url: 'ping.php',
@@ -15,6 +15,8 @@
 					document.title = defTitle + ' - Timestamp: ' + response;
 				}
 			}).send();
+
+			window.addEvent('unload', request.cancel);
 		});
 	</script>
 
