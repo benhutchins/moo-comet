@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<title>Request.Comet - Comet wrapper for mootools 1.11</title>
+	<script src="mootools.v1.11.js" type="text/javascript" charset="utf-8"></script>
+	<script src="xhr.comet.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		window.addEvent('load', function() {
+			var defTitle = document.title;
+			var request = new XHR.Comet({
+				url: 'ping.php',
+				onPush: function(response) {
+					$('serverCall').setHTML(response);
+					document.title = defTitle + ' - Timestamp: ' + response;
+				}
+			}).send();
+
+			window.addEvent('unload', request.cancel);
+		});
+	</script>
+
+</head>
+<body>
+	<p>Server returned: <span id="serverCall"></span></p>
+</body>
+</html>
